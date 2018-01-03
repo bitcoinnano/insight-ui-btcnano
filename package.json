@@ -1,5 +1,5 @@
 {
-  "name": "insight-ui",
+  "name": "insight-ui-btcnano",
   "description": "An open-source frontend for the Insight API. The Insight API provides you with a convenient, powerful and simple way to query and broadcast data on the btcnano network and build your own services with it.",
   "version": "0.4.0",
   "repository": {
