@@ -46,10 +46,6 @@
     "front-end"
   ],
   "bitcoreNode": "btcnano-node",
-  "insightConfig": {
-    "apiPrefix": "api",
-    "routePrefix": ""
-  },
   "dependencies": {},
   "devDependencies": {
     "bower": "~1.2.8",
