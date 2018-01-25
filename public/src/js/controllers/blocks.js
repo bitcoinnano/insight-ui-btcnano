@@ -26,6 +26,7 @@ angular.module('insight.blocks').controller('BlocksController',
   };
 
   $scope.$watch('dt', function(newValue, oldValue) {
+
     if (newValue !== oldValue) {
       $location.path('/blocks-date/' + _formatTimestamp(newValue));
     }

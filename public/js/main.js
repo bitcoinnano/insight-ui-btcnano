@@ -1,7 +1,7 @@
 // Source: public/src/js/app.js
 var defaultLanguage = localStorage.getItem('insight-language') || 'en';
-var defaultCurrency = localStorage.getItem('insight-currency') || 'BTC';
-
+var defaultCurrency = localStorage.getItem('insight-currency') || 'Nano';
+//console.log('1111');
 angular.module('insight',[
   'ngAnimate',
   'ngResource',
@@ -122,6 +122,7 @@ angular.module('insight.blocks').controller('BlocksController',
   };
 
   $scope.$watch('dt', function(newValue, oldValue) {
+
     if (newValue !== oldValue) {
       $location.path('/blocks-date/' + _formatTimestamp(newValue));
     }
@@ -268,13 +269,13 @@ angular.module('insight.currency').controller('CurrencyController',
         var response;
 
         if (this.symbol === 'USD') {
-          response = _roundFloat((value * this.factor), 2);
-        } else if (this.symbol === 'mBTC') {
+          response = _roundFloat((value * 0.3), 2);
+        } else if (this.symbol === 'mBTN') {
           this.factor = 1000;
-          response = _roundFloat((value * this.factor), 5);
+          response = _roundFloat((value * this.factor * 0.3), 5);
         } else if (this.symbol === 'bits') {
           this.factor = 1000000;
-          response = _roundFloat((value * this.factor), 2);
+          response = _roundFloat((value * this.factor * 0.3), 2);
         } else {
           this.factor = 1;
           response = value;
@@ -296,7 +297,7 @@ angular.module('insight.currency').controller('CurrencyController',
         Currency.get({}, function(res) {
           $rootScope.currency.factor = $rootScope.currency.bitstamp = res.data.bitstamp;
         });
-      } else if (currency === 'mBTC') {
+      } else if (currency === 'mBTN') {
         $rootScope.currency.factor = 1000;
       } else if (currency === 'bits') {
         $rootScope.currency.factor = 1000000;
@@ -354,13 +355,13 @@ angular.module('insight.system').controller('FooterController',
 
 // Source: public/src/js/controllers/header.js
 angular.module('insight.system').controller('HeaderController',
-  function($scope, $rootScope, $modal, getSocket, Global, Block) {
+  function($scope, $rootScope, $location, $modal, getSocket, Global, Block) {
     $scope.global = Global;
 
     $rootScope.currency = {
       factor: 1,
       bitstamp: 0,
-      symbol: 'BTC'
+      symbol: 'Nano'
     };
 
     $scope.menu = [{
@@ -397,11 +398,35 @@ angular.module('insight.system').controller('HeaderController',
     });
 
     $rootScope.isCollapsed = true;
+
+      //Datepicker
+      var _formatTimestamp = function (date) {
+          var yyyy = date.getUTCFullYear().toString();
+          var mm = (date.getUTCMonth() + 1).toString(); // getMonth() is zero-based
+          var dd  = date.getUTCDate().toString();
+
+          return yyyy + '-' + (mm[1] ? mm : '0' + mm[0]) + '-' + (dd[1] ? dd : '0' + dd[0]); //padding
+      };
+
+      $scope.$watch('dt', function(newValue, oldValue) {
+          if (newValue !== oldValue) {
+              $location.path('/blocks-date/' + _formatTimestamp(newValue));
+          }
+      });
+
+      $scope.openCalendar = function($event) {
+          $event.preventDefault();
+          $event.stopPropagation();
+
+          $scope.opened = true;
+      };
+
   });
+
 
 // Source: public/src/js/controllers/index.js
 var TRANSACTION_DISPLAYED = 10;
-var BLOCKS_DISPLAYED = 5;
+var BLOCKS_DISPLAYED = 10;
 
 angular.module('insight.system').controller('IndexController',
   function($scope, Global, getSocket, Blocks) {
@@ -1297,7 +1322,7 @@ angular.module('insight').config(function($routeProvider) {
   $routeProvider.
     when('/block/:blockHash', {
       templateUrl: 'views/block.html',
-      title: 'Bitcoin Block '
+      title: 'Btcnano Block '
     }).
     when('/block-index/:blockHeight', {
       controller: 'BlocksController',
@@ -1309,7 +1334,7 @@ angular.module('insight').config(function($routeProvider) {
     }).
     when('/tx/:txId/:v_type?/:v_index?', {
       templateUrl: 'views/transaction.html',
-      title: 'Bitcoin Transaction '
+      title: 'Btcnano Transaction '
     }).
     when('/', {
       templateUrl: 'views/index.html',
@@ -1317,15 +1342,15 @@ angular.module('insight').config(function($routeProvider) {
     }).
     when('/blocks', {
       templateUrl: 'views/block_list.html',
-      title: 'Bitcoin Blocks solved Today'
+      title: 'Btcnano Blocks solved Today'
     }).
     when('/blocks-date/:blockDate/:startTimestamp?', {
       templateUrl: 'views/block_list.html',
-      title: 'Bitcoin Blocks solved '
+      title: 'Btcnano Blocks solved '
     }).
     when('/address/:addrStr', {
       templateUrl: 'views/address.html',
-      title: 'Bitcoin Address '
+      title: 'Btcnano Address '
     }).
     when('/status', {
       templateUrl: 'views/status.html',

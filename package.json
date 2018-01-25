@@ -1,7 +1,7 @@
 {
-  "name": "insight-ui",
+  "name": "insight-ui-btcnano",
   "description": "An open-source frontend for the Insight API. The Insight API provides you with a convenient, powerful and simple way to query and broadcast data on the btcnano network and build your own services with it.",
-  "version": "0.4.0",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/bitcoinnano/insight-ui-btcnano.git"
@@ -46,10 +46,6 @@
     "front-end"
   ],
   "bitcoreNode": "btcnano-node",
-  "insightConfig": {
-    "apiPrefix": "api",
-    "routePrefix": ""
-  },
   "dependencies": {},
   "devDependencies": {
     "bower": "~1.2.8",

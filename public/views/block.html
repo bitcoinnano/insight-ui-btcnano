@@ -80,10 +80,18 @@
               </div>
             </td>
           </tr>
-          <tr data-ng-show="block.previousblockhash">
+          <tr>
+            <td> <strong>Nonce</strong></td>
+            <td class="text-right text-muted">
+              <div>
+                <span style="word-wrap: break-word;">{{block.nonce}}</span>
+              </div>
+            </td>
+          </tr>
+         <!-- <tr data-ng-show="block.previousblockhash">
             <td><strong translate>Previous Block</strong></td>
             <td class="text-right"><a href="block/{{block.previousblockhash}}">{{block.height-1}}</a></td>
-          </tr>
+          </tr>-->
           </tbody>
         </table>
       </div>
@@ -106,10 +114,18 @@
             <td> <strong translate>Version</strong></td>
             <td class="text-right text-muted">{{block.version}}</td>
           </tr>
-          <tr>
-            <td> <strong>Nonce</strong></td>
-            <td class="text-right text-muted">{{block.nonce}}</td>
+          <tr data-ng-show="block.previousblockhash">
+            <td><strong translate>Previous Block</strong></td>
+            <td class="text-right"><a href="block/{{block.previousblockhash}}">{{block.height-1}}</a></td>
           </tr>
+         <!-- <tr>
+            <td> <strong>Nonce</strong></td>
+            <td class="text-right text-muted">
+              <div class="ellipsis">
+                <span>{{block.nonce}}</span>
+              </div>
+            </td>
+          </tr>-->
           <tr data-ng-show="block.nextblockhash">
             <td><strong translate>Next Block</strong></td>
             <td class="text-right"><a href="block/{{block.nextblockhash}}">{{block.height+1}}</a></td>

@@ -19,13 +19,13 @@ angular.module('insight.currency').controller('CurrencyController',
         var response;
 
         if (this.symbol === 'USD') {
-          response = _roundFloat((value * this.factor), 2);
+          response = _roundFloat((value * 0.3), 2);
         } else if (this.symbol === 'mBTN') {
           this.factor = 1000;
-          response = _roundFloat((value * this.factor), 5);
+          response = _roundFloat((value * this.factor * 0.3), 5);
         } else if (this.symbol === 'bits') {
           this.factor = 1000000;
-          response = _roundFloat((value * this.factor), 2);
+          response = _roundFloat((value * this.factor * 0.3), 2);
         } else {
           this.factor = 1;
           response = value;

@@ -7,17 +7,17 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<meta name="fragment" content="!">
 	<title data-ng-bind="$root.title + $root.titleDetail + ' | Btcnano'">Btcnano</title>
-	<meta name="keywords" content="bitcoins, Btcnano, transactions, blocks, address, block chain, best block, mining difficulty, hash serialized">
+	<meta name="keywords" content="bitcoins, btcnano, transactions, blocks, address, block chain, best block, mining difficulty, hash serialized">
 	<meta name="description" content="Bitcoin Nano Insight. View detailed information on all bitcoin transactions and block. {{ $root.title + $root.titleDetail }}">
 	<link rel="shortcut icon" href="img/icons/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,400italic">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,400italic">
 	<link rel="stylesheet" href="css/main.min.css">
 </head>
 <body ng-cloak class="ng-cloak">
   <div>
     <script type="text/ng-template" id="scannerModal.html">
       <div class="modal-header">
-        <h3 class="modal-title">Scan Code</h3>
+        <h3 class="modal-title">Scan Code2</h3>
       </div>
       <div class="modal-body text-center">
         <canvas id="qr-canvas" width="200" height="150"></canvas>
@@ -56,20 +56,23 @@
           </a>
           ]
         </span>
-        &nbsp;
+        &nbsp;bv
         [
         <a href="messages/verify" translate>verify message</a>
         <span> &middot; </span>
         <a href="tx/send" translate>broadcast transaction</a>
         ]
       </div>
-      <a class="insight m10v pull-right" target="_blank" href="http://insight.is">insight <small>API v{{version}}</small></a>
+      <!--<a class="insight m10v pull-right" target="_blank" href="http://insight.is">insight <small>API v{{version}}</small></a>-->
+       <a class="insight m10v pull-right" target="_blank" href="#">
+            <img ng-src="img/logo_footer.png" class="footerLogo">
+       </a>
     </div>
   </div>
   <script language="javascript">window.apiPrefix = '/api';</script>
-	<script src="/socket.io/socket.io.js"></script>
-	<script src="js/vendors.min.js"></script>
-	<script src="js/angularjs-all.min.js"></script>
-	<script src="js/main.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/vendors.min.js"></script>
+  <script src="js/angularjs-all.min.js"></script>
+  <script src="js/main.min.js"></script>
 </body>
 </html>

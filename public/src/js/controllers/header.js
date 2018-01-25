@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('insight.system').controller('HeaderController',
-  function($scope, $rootScope, $modal, getSocket, Global, Block) {
+  function($scope, $rootScope, $location, $modal, getSocket, Global, Block) {
     $scope.global = Global;
 
     $rootScope.currency = {
       factor: 1,
       bitstamp: 0,
-      symbol: 'BTN'
+      symbol: 'Nano'
     };
 
     $scope.menu = [{
@@ -44,4 +44,28 @@ angular.module('insight.system').controller('HeaderController',
     });
 
     $rootScope.isCollapsed = true;
+
+      //Datepicker
+      var _formatTimestamp = function (date) {
+          var yyyy = date.getUTCFullYear().toString();
+          var mm = (date.getUTCMonth() + 1).toString(); // getMonth() is zero-based
+          var dd  = date.getUTCDate().toString();
+
+          return yyyy + '-' + (mm[1] ? mm : '0' + mm[0]) + '-' + (dd[1] ? dd : '0' + dd[0]); //padding
+      };
+
+      $scope.$watch('dt', function(newValue, oldValue) {
+          if (newValue !== oldValue) {
+              $location.path('/blocks-date/' + _formatTimestamp(newValue));
+          }
+      });
+
+      $scope.openCalendar = function($event) {
+          $event.preventDefault();
+          $event.stopPropagation();
+
+          $scope.opened = true;
+      };
+
   });
+
